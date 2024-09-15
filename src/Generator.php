@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /**
  * @license Apache 2.0
@@ -219,10 +221,10 @@ class Generator
                 $value = 'true' == $value;
             }
 
-            if ($isList = ('[]' == substr($key, -2))) {
+            if ($isList = ('[]' == substr((string) $key, -2))) {
                 $key = substr($key, 0, -2);
             }
-            $token = explode('.', $key);
+            $token = explode('.', (string) $key);
             if (2 == count($token)) {
                 // 'operationId.hash' => false
                 // namespaced / processor
@@ -431,17 +433,17 @@ class Generator
     {
         // merge with defaults
         $config = $options + [
-                'aliases' => self::DEFAULT_ALIASES,
-                'namespaces' => self::DEFAULT_NAMESPACES,
-                'analyser' => null,
-                'analysis' => null,
-                'processor' => null,
-                'processors' => null,
-                'config' => [],
-                'logger' => null,
-                'validate' => true,
-                'version' => null,
-            ];
+            'aliases' => self::DEFAULT_ALIASES,
+            'namespaces' => self::DEFAULT_NAMESPACES,
+            'analyser' => null,
+            'analysis' => null,
+            'processor' => null,
+            'processors' => null,
+            'config' => [],
+            'logger' => null,
+            'validate' => true,
+            'version' => null,
+        ];
 
         $processorPipeline = $config['processor'] ??
             $config['processors'] ? new Pipeline($config['processors']) : null;
