@@ -222,7 +222,7 @@ class Generator
             }
 
             if ($isList = ('[]' == substr((string) $key, -2))) {
-                $key = substr($key, 0, -2);
+                $key = substr((string) $key, 0, -2);
             }
             $token = explode('.', (string) $key);
             if (2 == count($token)) {
